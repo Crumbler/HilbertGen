@@ -31,6 +31,7 @@
             this.panelMain = new System.Windows.Forms.Panel();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.upDownSize = new System.Windows.Forms.NumericUpDown();
+            this.btnSave = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upDownSize)).BeginInit();
             this.SuspendLayout();
@@ -38,6 +39,7 @@
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelMain.Controls.Add(this.btnSave);
             this.panelMain.Controls.Add(this.btnGenerate);
             this.panelMain.Controls.Add(this.upDownSize);
             this.panelMain.Location = new System.Drawing.Point(12, 12);
@@ -77,6 +79,16 @@
             0,
             0});
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(3, 61);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(66, 39);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "Save as txt";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -100,5 +112,6 @@
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.NumericUpDown upDownSize;
+        private System.Windows.Forms.Button btnSave;
     }
 }

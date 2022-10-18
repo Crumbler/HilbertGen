@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace HilbertGen
 {
@@ -94,6 +95,33 @@ namespace HilbertGen
         {
             panelMain.Height = this.ClientSize.Height - 24;
             this.Invalidate();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var dialog = new SaveFileDialog
+            {
+                DefaultExt = "txt",
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+            };
+
+            var res = dialog.ShowDialog();
+
+            if (res != DialogResult.OK)
+            {
+                return;
+            }
+
+            int size = (int)upDownSize.Value;
+
+            using StreamWriter writer = File.CreateText(dialog.FileName);
+
+            (int x, int y)[] path = HilbertGrid.GeneratePath(size);
+
+            foreach ((int x, int y) in path)
+            {
+                writer.WriteLine($"{y} {x}");
+            }
         }
     }
 }

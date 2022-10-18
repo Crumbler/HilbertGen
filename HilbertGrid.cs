@@ -39,6 +39,23 @@ namespace HilbertGen
             }
         }
 
+        public static (int x, int y)[] GeneratePath(int size)
+        {
+            int cellsPerSide = 1 << size;
+            int totalCells = cellsPerSide * cellsPerSide;
+
+            var path = new (int x, int y)[totalCells];
+
+            for (int i = 0; i < totalCells; ++i)
+            {
+                (int x, int y) curr = GetCoordsByInd(i, cellsPerSide);
+
+                path[i] = curr;
+            }
+
+            return path;
+        }
+
         private void ConnectCells((int x, int y) cellA, (int x, int y) cellB)
         {
             if (cellA.x < cellB.x)
