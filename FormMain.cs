@@ -97,7 +97,7 @@ namespace HilbertGen
             this.Invalidate();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave1_Click(object sender, EventArgs e)
         {
             var dialog = new SaveFileDialog
             {
@@ -121,6 +121,34 @@ namespace HilbertGen
             foreach ((int x, int y) in path)
             {
                 writer.WriteLine($"{y} {x}");
+            }
+        }
+
+        private void btnSave2_Click(object sender, EventArgs e)
+        {
+            var dialog = new SaveFileDialog
+            {
+                DefaultExt = "txt",
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+            };
+
+            var res = dialog.ShowDialog();
+
+            if (res != DialogResult.OK)
+            {
+                return;
+            }
+
+            int size = (int)upDownSize.Value;
+            int cellsPerSide = 1 << size;
+
+            using StreamWriter writer = File.CreateText(dialog.FileName);
+
+            (int x, int y)[] path = HilbertGrid.GeneratePath(size);
+
+            foreach ((int x, int y) in path)
+            {
+                writer.WriteLine(y * cellsPerSide + x);
             }
         }
     }
